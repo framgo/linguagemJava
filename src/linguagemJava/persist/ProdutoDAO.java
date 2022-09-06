@@ -141,9 +141,9 @@ public class ProdutoDAO extends DAO {
         try {
             conn = getConnection();
             pstmt = conn.prepareStatement("select * from produto where id = ?");
-            rs = pstmt.executeQuery();
 
             pstmt.setLong(1, id);
+            rs = pstmt.executeQuery();
 
             Produto produto = new Produto();
 
