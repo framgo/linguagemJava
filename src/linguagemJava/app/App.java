@@ -1,24 +1,48 @@
 package linguagemJava.app;
 
-import java.util.Scanner;
+
+import linguagemJava.model.Produto;
+import linguagemJava.persist.ProdutoDAO;
+import linguagemJava.service.ProdutoService;
+
+import javax.swing.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 
 public class App {
     public static void main(String[] args) {
-        int num, sum = 0;
-        Scanner input = new Scanner(System.in);
+        var service = new ProdutoService();
+        Produto produto = new Produto();
 
-        for (; ;) {
-            System.out.println("Digite um numero: ");
-            num = input.nextInt();
+        // interface para salvar um produto no banco de dados - completa
 
-            if(num == 0)
-                break;
+        produto.setNomeProduto(JOptionPane.showInputDialog(null, "Informe o nome do produto: ", "Input Nome", JOptionPane.QUESTION_MESSAGE));
 
-            if(num != 0)
-                sum = sum + num;
+        produto.setQtdProduto(Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a quantidade do produto: ", "Input Quantidade", JOptionPane.QUESTION_MESSAGE)));
 
-            System.out.println("Resultado = " + sum);
-            System.out.println("\n");
+        produto.setTipoProduto(JOptionPane.showInputDialog(null, "Informe o tipo do produto: ", "Input Tipo", JOptionPane.QUESTION_MESSAGE));
+
+        produto.setPrecoProduto(Double.parseDouble(JOptionPane.showInputDialog(null, "Informe o preço do produto: ", "Input Preço", JOptionPane.QUESTION_MESSAGE)));
+
+        produto.setFornecedor(JOptionPane.showInputDialog(null, "Informe o fornecedor do produto: ", "Input Fornecedor", JOptionPane.QUESTION_MESSAGE));
+
+        var response = service.save(produto);
+
+        var situacao = "Ocorreu uma falha na gravação. Verifique o log";
+        var iconeStatus = JOptionPane.ERROR;
+
+        if(response){
+            situacao = "Gravado com sucesso";
+            iconeStatus = JOptionPane.INFORMATION_MESSAGE;
         }
+
+        var msg = "Situação da gravação no banco: " + situacao + "\n\n" + "produto.nome = " + produto.getNomeProduto() + "\n" + "produto.quantidade = " + produto.getQtdProduto() + "\n" + "produto.tipo = " + produto.getTipoProduto() + "\n" + "produto.preco = " + produto.getPrecoProduto() + "\n" + "produto.fornecedor = " + produto.getFornecedor();
+        JOptionPane.showMessageDialog(null, msg, "Resposta", iconeStatus );
+
+        // interface para listar todos os produtos no banco de dados - completa
+        var produtoList = service.findAll().stream().map(produtos -> "produto.nome: " + produtos.getNomeProduto() + "\n" + "produto.quantidade: " + produtos.getQtdProduto() + "\n" + "produto.tipo: " + produtos.getTipoProduto() + "\n" + "produto.preco: " + produtos.getPrecoProduto() +  "\n" + "produto.fornecedor: " + produtos.getFornecedor() + "\n" + "produto.created: " + produtos.getCreated() + "\n\n").toList();
+        JOptionPane.showMessageDialog(null, produtoList, "Resposta", JOptionPane.INFORMATION_MESSAGE);
+
     }
 }
