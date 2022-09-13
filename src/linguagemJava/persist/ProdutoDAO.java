@@ -147,7 +147,7 @@ public class ProdutoDAO extends DAO {
 
             Produto produto = new Produto();
 
-            if (rs.next()) {
+            if(rs.next()) {
                 produto.setNomeProduto(rs.getString("nomeProduto"));
                 produto.setQtdProduto(rs.getInt("qtdProduto"));
                 produto.setTipoProduto(rs.getString("tipoProduto"));

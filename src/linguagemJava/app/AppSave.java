@@ -2,20 +2,16 @@ package linguagemJava.app;
 
 
 import linguagemJava.model.Produto;
-import linguagemJava.persist.ProdutoDAO;
 import linguagemJava.service.ProdutoService;
 
 import javax.swing.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 
-public class App {
+public class AppSave {
     public static void main(String[] args) {
         var service = new ProdutoService();
         Produto produto = new Produto();
 
-        // interface para salvar um produto no banco de dados - completa
 
         produto.setNomeProduto(JOptionPane.showInputDialog(null, "Informe o nome do produto: ", "Input Nome", JOptionPane.QUESTION_MESSAGE));
 
@@ -39,10 +35,6 @@ public class App {
 
         var msg = "Situação da gravação no banco: " + situacao + "\n\n" + "produto.nome = " + produto.getNomeProduto() + "\n" + "produto.quantidade = " + produto.getQtdProduto() + "\n" + "produto.tipo = " + produto.getTipoProduto() + "\n" + "produto.preco = " + produto.getPrecoProduto() + "\n" + "produto.fornecedor = " + produto.getFornecedor();
         JOptionPane.showMessageDialog(null, msg, "Resposta", iconeStatus );
-
-        // interface para listar todos os produtos no banco de dados - completa
-        var produtoList = service.findAll().stream().map(produtos -> "produto.nome: " + produtos.getNomeProduto() + "\n" + "produto.quantidade: " + produtos.getQtdProduto() + "\n" + "produto.tipo: " + produtos.getTipoProduto() + "\n" + "produto.preco: " + produtos.getPrecoProduto() +  "\n" + "produto.fornecedor: " + produtos.getFornecedor() + "\n" + "produto.created: " + produtos.getCreated() + "\n\n").toList();
-        JOptionPane.showMessageDialog(null, produtoList, "Resposta", JOptionPane.INFORMATION_MESSAGE);
 
     }
 }
