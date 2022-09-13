@@ -15,7 +15,7 @@ public class AppUpdate {
         Produto update1 = new Produto();
 
         update1.setId(Long.parseLong(JOptionPane.showInputDialog(null, "Selecione o id do produto para atualizar: ", "Input Id", JOptionPane.QUESTION_MESSAGE)));
-        update1.setNomeProduto(JOptionPane.showInputDialog(null, "Atualize o nome do produto: ", "Input Nome", JOptionPane.QUESTION_MESSAGE)); // seleciona os campos que voce quer mudar e o id no final para atualizar no banco
+        update1.setNomeProduto(JOptionPane.showInputDialog(null, "Atualize o nome do produto: ", "Input Nome", JOptionPane.QUESTION_MESSAGE));
         update1.setQtdProduto(Integer.parseInt(JOptionPane.showInputDialog(null, "Atualize a quantidade do produto: ", "Input Quantidade", JOptionPane.QUESTION_MESSAGE)));
         update1.setTipoProduto(JOptionPane.showInputDialog(null, "Atualize o tipo do produto: ", "Input Tipo", JOptionPane.QUESTION_MESSAGE));
         update1.setPrecoProduto(Float.parseFloat(JOptionPane.showInputDialog(null, "Atualize o preço do produto: ", "Input Preço", JOptionPane.QUESTION_MESSAGE)));
