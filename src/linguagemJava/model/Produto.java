@@ -13,6 +13,18 @@ public class Produto {
 
     private Timestamp created;
 
+    public Produto() {}
+
+    public Produto(long id, String nomeProduto, int qtdProduto, String tipoProduto, Double precoProduto, String fornecedor, Timestamp created) {
+        this.id = id;
+        this.nomeProduto = nomeProduto;
+        this.qtdProduto = qtdProduto;
+        this.tipoProduto = tipoProduto;
+        this.precoProduto = precoProduto;
+        this.fornecedor = fornecedor;
+        this.created = created;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
